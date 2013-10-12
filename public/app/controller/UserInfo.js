@@ -1,32 +1,24 @@
 Ext.define('wx.controller.UserInfo', {
     extend: 'Ext.app.Controller',
-    views: ['UserInfo', 'Main'],
+    views: ['UserInfo', 'Main','Test'],
 
     config: {
         control: {
             'button[action=saveUserInfo]': {
                 tap: 'saveUserInfo'
             },
-            'button[action=logout]': {
-                tap: 'doLogout'
+            'button[action=test]': {
+                tap: 'test'
             }
         },
 
         refs: {
-            userInfo: '#userInfo'
+            userInfo: '#userInfo',
+            test: '#test'
         }
     },
 
     saveUserInfo: function () {
-//        var values = this.getUserInfo().getValues();
-//        var tpl = new Ext.XTemplate(
-//            '<p>{name}</p>',
-//            '<p>{sex}</p>',
-//            '<p>{age}</p>'
-//
-//        );
-
-
         Ext.Ajax.request({
             url: 'users',
             method:'post',
@@ -42,7 +34,19 @@ Ext.define('wx.controller.UserInfo', {
         });
     },
 
-    doLogout: function () {
-        //called whenever any Button with action=logout is tapped
+    test: function () {
+        Ext.Ajax.request({
+            url: 'menu',
+            method:'post',
+            params: this.getTest().getValues().message,
+            success: function (response) {
+                var text = response.responseText;
+                Ext.Msg.alert('Title', text, Ext.emptyFn);
+            },
+            failure: function (response, opts) {
+                var text = response.responseText;
+                Ext.Msg.alert('Title', text, Ext.emptyFn);
+            }
+        });
     }
 });

@@ -9,6 +9,12 @@
         "express": "3.4.0",
         "ejs": "*",
         "nosql": "*",
+        "log": "*",
+        "xml2js": "*",
+        "querystring": "*",
+        "crypto": "*",
+        "events": "*",
+        "async": "*",
         "underscore": "*"
     }
 }
